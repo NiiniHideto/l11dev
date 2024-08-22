@@ -18,46 +18,6 @@ class PeraOneController extends Controller
     {
         //
         $pera_ones = PeraOne::all();
-
-        // 画像処理のテスト
-        $manager = new ImageManager(new Driver());
-        if($pera_ones->isNotEmpty())
-        {
-            foreach($pera_ones as $item)
-            {
-
-
-                if(isset($item->pic_a) && isset($item->str_a))
-                {
-                    // 画像を操作
-                    $imgPath = storage_path('app/public/' . $item->pic_a);
-                    $img = $manager->read($imgPath);
-
-                    // 画像を垂直に反転
-                    $img->flop();
-
-                    // リサイズ
-                    $img->resize(600, 400);
-
-                    // 文字列を合成
-                    $img->text($item->str_a, 300, 150, function($font) {
-                        $font->file(storage_path('app/public/font/NotoSansJP-Black.ttf'));
-                        $font->size(80);
-                        $font->color('#00FF00');
-                        $font->align('center');
-                        $font->valign('bottom');
-                        $font->stroke('#000000', 5);
-                        $font->angle(350);
-                        
-                    });
-
-
-                    // 別名で保存
-                    $img->save(storage_path('app/public/' . $item->pic_a . "_test"));
-                } 
-            }
-        }
-
         return view('pera_one.index', ['pera_ones' => $pera_ones]);
     }
 
@@ -76,15 +36,18 @@ class PeraOneController extends Controller
     {
         $pera_one = new PeraOne;
 
-        $pera_one->user_id = 'uid001';
-
-        // test
         $pera_one->user_id = $request->user()->id;
 
         $pera_one->str_a = $request->input('str_a');
         $pera_one->str_b = $request->input('str_b');
         $pera_one->str_c = $request->input('str_c');
         $pera_one->theme = $request->input('theme');
+        if(!isset($pera_one->theme)){
+            // dump($request);
+            dd($request);
+            // return redirect('/peraone');
+            // TODO: Requests のところで rules() を設定する
+        }
 
         if(isset($request->pic_a)){
             $file_name = $request->pic_a->getClientOriginalName();
@@ -108,6 +71,36 @@ class PeraOneController extends Controller
 
         $pera_one->save();
 
+
+        // 画像処理のテスト
+        $manager = new ImageManager(new Driver());
+
+        if(isset($pera_one->pic_a) && isset($pera_one->str_a)){
+            // 画像を操作
+            $imgPath = storage_path('app/public/' . $pera_one->pic_a);
+            $img = $manager->read($imgPath);
+
+            // 画像を垂直に反転
+            $img->flop();
+
+            // リサイズ
+            $img->resize(600, 400);
+
+            // 文字列を合成
+            $img->text($pera_one->str_a, 300, 150, function($font) {
+                $font->file(storage_path('app/public/font/NotoSansJP-Black.ttf'));
+                $font->size(80);
+                $font->color('#00FF00');
+                $font->align('center');
+                $font->valign('bottom');
+                $font->stroke('#000000', 5);
+                $font->angle(350);
+                
+            });
+
+            // 別名で保存
+            $img->save(storage_path('app/public/' . $pera_one->pic_a . "_test"));
+        } 
 
 
         return redirect('/peraone');

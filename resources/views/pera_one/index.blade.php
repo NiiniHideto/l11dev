@@ -89,7 +89,7 @@
                                     </select>
 
                                     <div class="p-2 w-full">
-                                        <button type="submit" name="submitBtnVal" value="confirm" class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">確認</button>
+                                        <button type="submit" name="submitBtnVal" value="confirm" class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">保存</button>
                                     </div>
 
                                 </div>
