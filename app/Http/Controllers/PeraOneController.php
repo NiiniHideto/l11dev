@@ -61,21 +61,6 @@ class PeraOneController extends Controller
         return view('pera_one.index', ['pera_ones' => $pera_ones]);
     }
 
-    public function theme(string $user_id)
-    {
-        // とりあえず新しいデータ
-        $pera_one = PeraOne::where('user_id', $user_id)->orderBy('id','desc')->first();
-        if(!isset($pera_one))
-        {
-            // データが無ければ、とりあえずindex
-            return view('pera_one.index');    
-        }
-
-        return view('pera_one.theme.' . $pera_one->theme, compact('pera_one'));
-    }
-
-
-
     /**
      * Show the form for creating a new resource.
      */

@@ -27,7 +27,7 @@
                                             . "," . $item->pic_c
                                             . "," . $item->theme
                                         }} 
-                                        <a href="{{ route('peraone.theme', ['user_id' => $item->user_id]) }}" target="_blank">[表示]</a>
+                                         <a href="{{ route('peraone.show', ['user_id' => $item->user_id]) }}" target="_blank">[表示]</a>
                                     </li>
                                 @endforeach
                             </ul>
