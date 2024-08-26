@@ -10,7 +10,7 @@ Route::get('/', function () {
 });
 
 // 認証していなくても見られるように
-Route::get('peraone/show/{user_id}', [PeraOneController::class, 'show'])->name('peraone.show');
+Route::get('/peraone/show/{user_id}', [PeraOneController::class, 'show'])->name('peraone.show');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -22,8 +22,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // Route::get('/list', [PeraOneController::class, 'index']);
-    // 簡略化して書けるのはいいけど、わかりにくいかも
+    // Route::resource 簡略化して書けるのはいいけど、わかりにくいかも
     Route::resource('peraone', PeraOneController::class)->except(['show']);
+    Route::post('/peraone/save', [PeraOneController::class, 'save'])->name('peraone.save');
 });
 
 require __DIR__.'/auth.php';

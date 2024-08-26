@@ -146,4 +146,77 @@ class PeraOneController extends Controller
     {
         //
     }
+
+    public function save(Request $request)
+    {
+        // dd($request);
+        $pera_one = new PeraOne;
+
+        $pera_one->user_id = $request->user()->id;
+
+        $pera_one->str_a = $request->input('str_a');
+        $pera_one->str_b = $request->input('str_b');
+        $pera_one->str_c = $request->input('str_c');
+        $pera_one->theme = $request->input('theme');
+        if(!isset($pera_one->theme)){
+            // dump($request);
+            dd($request);
+            // return redirect('/peraone');
+            // TODO: Requests のところで rules() を設定する
+        }
+
+        if(isset($request->pic_a)){
+            $file_name = $request->pic_a->getClientOriginalName();
+            $pera_one->pic_a = $file_name;
+            $img = $request->pic_a->storeAs('public', $file_name );
+        }
+
+        if(isset($request->pic_b)){
+            $file_name = $request->pic_b->getClientOriginalName();
+            $pera_one->pic_b = $file_name;
+            $img = $request->pic_b->storeAs('public', $file_name );
+        }
+
+        if(isset($request->pic_c)){
+            $file_name = $request->pic_c->getClientOriginalName();
+            $pera_one->pic_c = $file_name;
+            $img = $request->pic_c->storeAs('public', $file_name );
+        }
+
+        PeraOne::updateOrCreate(['user_id' => $pera_one->user_id], $pera_one->toArray());
+
+
+        // 画像処理のテスト
+        $manager = new ImageManager(new Driver());
+
+        if(isset($pera_one->pic_b) && isset($pera_one->str_b)){
+            // 画像を操作
+            $imgPath = storage_path('app/public/' . $pera_one->pic_b);
+            $img = $manager->read($imgPath);
+
+            // 画像を垂直に反転
+            $img->flop();
+
+            // リサイズ
+            $img->resize(600, 400);
+
+            // 文字列を合成
+            $img->text($pera_one->str_b, 300, 150, function($font) {
+                $font->file(storage_path('app/public/font/NotoSansJP-Black.ttf'));
+                $font->size(80);
+                $font->color('#00FF00');
+                $font->align('center');
+                $font->valign('bottom');
+                $font->stroke('#000000', 5);
+                $font->angle(350);
+                
+            });
+
+            // 別名で保存
+            $img->save(storage_path('app/public/' . $pera_one->pic_b . "_test"));
+        } 
+
+
+        return redirect('/peraone');
+    }
 }

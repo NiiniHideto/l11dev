@@ -1,4 +1,8 @@
 <x-app-layout>
+    @php
+        $pera_one = null;
+    @endphp
+
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('PeraOne') }}
@@ -29,14 +33,22 @@
                                         }} 
                                          <a href="{{ route('peraone.show', ['user_id' => $item->user_id]) }}" target="_blank">[表示]</a>
                                     </li>
+                                    @php
+                                        if ( Auth::id() == $item->user_id ){
+                                            $pera_one = $item;
+                                        }
+                                    @endphp
+
                                 @endforeach
+
                             </ul>
                         </div>
                     @endif
 
 
                     <!-- 入力フォーム -->
-                    <form action="{{ route('peraone.store') }}" method="POST" enctype="multipart/form-data">
+                    <!-- <form action="{{ route('peraone.store') }}" method="POST" enctype="multipart/form-data"> -->
+                    <form action="{{ route('peraone.save') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
                         <div class="container px-5 py-24 mx-auto">
@@ -50,19 +62,19 @@
                                     <div class="p-2 w-full">
                                         <div class="relative">
                                             <label for="str_a" class="leading-7 text-sm text-gray-600">文章A</label>
-                                            <textarea id="str_a" name="str_a" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-16 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+                                            <textarea id="str_a" name="str_a" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-16 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out">{{ $pera_one->str_a }}</textarea>
                                         </div>
                                     </div>
                                     <div class="p-2 w-full">
                                         <div class="relative">
                                             <label for="str_b" class="leading-7 text-sm text-gray-600">文章B</label>
-                                            <textarea id="str_b" name="str_b" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-16 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+                                            <textarea id="str_b" name="str_b" value="test" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-16 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out">{{ $pera_one->str_b }}</textarea>
                                         </div>
                                     </div>
                                     <div class="p-2 w-full">
                                         <div class="relative">
                                             <label for="str_c" class="leading-7 text-sm text-gray-600">文章C</label>
-                                            <textarea id="str_c" name="str_c" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-16 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"></textarea>
+                                            <textarea id="str_c" name="str_c" class="w-full bg-gray-100 bg-opacity-50 rounded border border-gray-300 focus:border-indigo-500 focus:bg-white focus:ring-2 focus:ring-indigo-200 h-16 text-base outline-none text-gray-700 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out">{{ $pera_one->str_c }}</textarea>
                                         </div>
                                     </div>
 
@@ -83,9 +95,8 @@
 
                                     <label for="theme">テーマ：</label>
                                     <select class="form-control" id="theme" name="theme">
-                                        <option value="">選択してください</option>
-                                        <option value="sample001">サンプル001</option>
-                                        <option value="sample002">サンプル002</option>
+                                        <option value="sample001"  @if(!isset($pera_one->theme) || "sample001" == $pera_one->theme) selected @endif>サンプル001</option>
+                                        <option value="sample002"  @if("sample002" == $pera_one->theme) selected @endif>サンプル002</option>
                                     </select>
 
                                     <div class="p-2 w-full">
