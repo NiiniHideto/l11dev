@@ -75,9 +75,9 @@ class PeraOneController extends Controller
         // 画像処理のテスト
         $manager = new ImageManager(new Driver());
 
-        if(isset($pera_one->pic_a) && isset($pera_one->str_a)){
+        if(isset($pera_one->pic_b) && isset($pera_one->str_b)){
             // 画像を操作
-            $imgPath = storage_path('app/public/' . $pera_one->pic_a);
+            $imgPath = storage_path('app/public/' . $pera_one->pic_b);
             $img = $manager->read($imgPath);
 
             // 画像を垂直に反転
@@ -87,7 +87,7 @@ class PeraOneController extends Controller
             $img->resize(600, 400);
 
             // 文字列を合成
-            $img->text($pera_one->str_a, 300, 150, function($font) {
+            $img->text($pera_one->str_b, 300, 150, function($font) {
                 $font->file(storage_path('app/public/font/NotoSansJP-Black.ttf'));
                 $font->size(80);
                 $font->color('#00FF00');
@@ -99,7 +99,7 @@ class PeraOneController extends Controller
             });
 
             // 別名で保存
-            $img->save(storage_path('app/public/' . $pera_one->pic_a . "_test"));
+            $img->save(storage_path('app/public/' . $pera_one->pic_b . "_test"));
         } 
 
 
