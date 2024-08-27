@@ -8,6 +8,8 @@ use App\Models\PeraOne;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 
+use Illuminate\Support\Facades\Auth;
+
 
 class PeraOneController extends Controller
 {
@@ -126,9 +128,13 @@ class PeraOneController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit()
     {
-        //
+        $user_id = Auth::id();
+
+        $pera_one = PeraOne::where('user_id', $user_id)->orderBy('id','desc')->first();
+
+        return view('pera_one.edit', compact('pera_one'));
     }
 
     /**
@@ -217,6 +223,6 @@ class PeraOneController extends Controller
         } 
 
 
-        return redirect('/peraone');
+        return redirect('/peraone/edit');
     }
 }

@@ -20,14 +20,21 @@
                 <!-- 試しにプロフィールをタブとして表示 -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
-                        {{ __('profile') }}
+                        {{ __('Profile') }}
                     </x-nav-link>
                 </div>
 
-                <!-- peraone -->
+                <!-- peraone 一覧 -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('peraone.index')" :active="request()->routeIs('peraone.index')">
                         {{ __('PeraOne') }}
+                    </x-nav-link>
+                </div>
+
+                <!-- peraone 編集 -->
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('peraone.edit')" :active="request()->routeIs('peraone.edit')">
+                        {{ __('Edit') }}
                     </x-nav-link>
                 </div>
 

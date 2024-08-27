@@ -8,11 +8,12 @@
     <header style="background-position: center; background-size: cover; background-attachment: fixed; background-image:url( {{asset('storage/' . $pera_one->pic_a)}} );">
 
     @if (isset($pera_one))
-        <div class="container py-5 px-10 mx-auto">
+        <div class="container py-5 px-5 mx-auto">
 
             <!-- 文章A タイトル風 -->
-            <ul class=" mx-auto w-1/2 font-medium text-gray-900 bg-white/50 rounded-lg border border-gray-200">
-                <li class="flex justify-center py-4 px-5 w-full rounded-t-lg border-b last:border-b-0 border-gray-200">
+            <br>
+            <ul class=" mx-auto w-1/2 font-medium text-gray-900 bg-white/70 rounded-lg border border-gray-200">
+                <li class="flex justify-center py-4  px-5 w-full rounded-t-lg border-b last:border-b-0 border-gray-200">
                     <p>{!! nl2br(htmlspecialchars($pera_one->str_a)) !!}</p>
                 </li>
             </ul>
@@ -46,6 +47,7 @@
                     <p>{!! nl2br(htmlspecialchars($pera_one->str_c)) !!}</p>
                 </li>
             </ul>
+            <br>
 
         </div>
 

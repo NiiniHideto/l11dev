@@ -1,11 +1,7 @@
 <x-app-layout>
-    @php
-        $pera_one = null;
-    @endphp
-
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Index') }}
+            {{ __('Edit') }}
         </h2>
     </x-slot>
 
@@ -14,47 +10,16 @@
             <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <div class="max-w-xl">
 
-
-                    <!-- 一覧表示 -->
-                    @if ( isset($pera_ones) && $pera_ones->isNotEmpty())
-                        <div class="container px-5 mx-auto">
-                            <ul class="font-medium text-gray-900 bg-white rounded-lg border border-gray-200">
-                                @foreach ($pera_ones as $item)
-                                    <li class="py-4 px-5 w-full rounded-t-lg border-b last:border-b-0 border-gray-200">
-                                        {{ $item->id . ":" 
-                                            . $item->user_id 
-                                            . "," . $item->str_a
-                                            . "," . $item->str_b
-                                            . "," . $item->str_c
-                                            . "," . $item->pic_a
-                                            . "," . $item->pic_b
-                                            . "," . $item->pic_c
-                                            . "," . $item->theme
-                                        }} 
-                                        <a href="{{ route('peraone.show', ['user_id' => $item->user_id]) }}" target="_blank">[表示]</a>
-                                    </li>
-                                    @php
-                                        if ( Auth::id() == $item->user_id ){
-                                            $pera_one = $item;
-                                        }
-                                    @endphp
-
-                                @endforeach
-
-                            </ul>
-                        </div>
-                    @endif
-
-
                     <!-- 入力フォーム -->
                     <!-- <form action="{{ route('peraone.store') }}" method="POST" enctype="multipart/form-data"> -->
-                    <!-- <form action="{{ route('peraone.save') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('peraone.save') }}" method="POST" enctype="multipart/form-data">
                         @csrf
 
-                        <div class="container px-5 py-24 mx-auto">
+                        <div class="container px-5 py-5 mx-auto">
                             <div class="flex flex-col text-center w-full mb-12">
                                 <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">設定</h1>
                                 <p class="lg:w-2/3 mx-auto leading-relaxed text-base">使用する文章、画像、表示スタイルを設定します。</p>
+                                <a href="{{ route('peraone.show', ['user_id' => $pera_one->user_id]) }}" target="_blank">[保存されている状態を別ウィンドウで表示]</a>
                             </div>
                             <div class="lg:w-1/2 md:w-2/3 mx-auto">
                                 <div class="flex flex-wrap -m-2">
@@ -99,7 +64,7 @@
                                         <option value="sample002"  @if("sample002" == $pera_one->theme) selected @endif>サンプル002</option>
                                     </select>
 
-                                    <div class="p-2 w-full">
+                                    <div class="py-10 p-2 w-full">
                                         <button type="submit" name="submitBtnVal" value="confirm" class="flex mx-auto text-white bg-indigo-500 border-0 py-2 px-8 focus:outline-none hover:bg-indigo-600 rounded text-lg">保存</button>
                                     </div>
 
@@ -107,8 +72,7 @@
                             </div>
                         </div>
 
-                    </form> -->
-
+                    </form>
 
                 </div>
             </div>

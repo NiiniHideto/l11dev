@@ -23,8 +23,9 @@ Route::middleware('auth')->group(function () {
 
     // Route::get('/list', [PeraOneController::class, 'index']);
     // Route::resource 簡略化して書けるのはいいけど、わかりにくいかも
-    Route::resource('peraone', PeraOneController::class)->except(['show']);
+    Route::resource('/peraone', PeraOneController::class)->except(['show','edit']);
     Route::post('/peraone/save', [PeraOneController::class, 'save'])->name('peraone.save');
+    Route::get('/peraone/edit', [PeraOneController::class, 'edit'])->name('peraone.edit');
 });
 
 require __DIR__.'/auth.php';
