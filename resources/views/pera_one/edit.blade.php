@@ -63,6 +63,7 @@
                                         <option value="sample001"  @if(!isset($pera_one->theme) || "sample001" == $pera_one->theme) selected @endif>サンプル001</option>
                                         <option value="sample002"  @if("sample002" == $pera_one->theme) selected @endif>サンプル002</option>
                                         <option value="sample003"  @if("sample003" == $pera_one->theme) selected @endif>サンプル003</option>
+                                        <option value="sample004"  @if("sample004" == $pera_one->theme) selected @endif>サンプル004</option>
                                     </select>
 
                                     <div class="py-10 p-2 w-full">

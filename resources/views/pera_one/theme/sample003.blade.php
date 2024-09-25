@@ -6,11 +6,42 @@
 
     <!-- 背景画像 -->
     <!-- <header style="background-position: center; background-size: cover; background-attachment: fixed; background-image:url( {{asset('storage/' . $pera_one->pic_a)}} );"> -->
-    <header style="background-color: #80ff80;">
+    <!-- <header style="background-color: #80ff80;"> -->
 
     @if (isset($pera_one))
+
         <div class="container px-5 mx-auto">
             <br>
+
+            <!-- 
+            max-w-sm：コンテナの最大幅をsm（小）ブレークポイントサイズに設定
+            m-24 ：コンテナの全辺に24単位（96pxまたは6rem）のマージンを追加
+            rounded：コンテナの角を丸くするためにborder-radiusを追加
+            overflow-hidden：コンテナからはみ出したコンテンツを非表示にする
+            shadow-lg：コンテナにシャドウ効果を追加
+            w-full：画像の幅をコンテナの100％に設定
+            px-6 py-4：x軸に6単位（24pxまたは1.5rem）、y軸に4単位（16pxまたは1rem）のパディングを追加
+            font-bold：テキストのfont-weightをboldに設定
+            text-xl：テキストのfont-sizeをextra-largeに設定
+            mb-2：要素に2単位（0.5remまたは8px）の下部マージンを追加
+            text-gray-600：テキストの色を濃い灰色に設定
+            text-base：テキストのフォントサイズをデフォルトに設定 
+            -->
+            <div class="max-w-md  m-24 rounded overflow-hidden shadow-lg">
+                <img class="w-full" src="https://picsum.photos/400/300" alt="Blog Image">
+                <div class="px-6 py-4">
+                    <h2 class="font-bold text-2xl mb-2">This is My Blog Title</h2>
+                    <p class="mt-3 text-gray-600 text-base">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, nulla! Maiores et perferendis eaque,
+                        exercitationem praesentium nihil.
+                    </p>
+                    <button class="mt-4 bg-blue-500 text-white font-bold py-2 px-4 rounded">
+                        Read More
+                    </button>
+                </div>
+            </div>
+
+
 
             <div class="grid grid-cols-5">
                 @foreach (range(1, 10) as $number)
