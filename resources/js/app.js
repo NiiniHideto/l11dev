@@ -126,3 +126,10 @@ document.addEventListener("alpine:init", () => {
 });
 
 Alpine.start();
+
+
+// vue
+import { createApp } from "vue";
+import App from "./App.vue";
+const vue_app = createApp(App);
+vue_app.mount("#vue_app");

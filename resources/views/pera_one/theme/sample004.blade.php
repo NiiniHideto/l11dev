@@ -1,7 +1,12 @@
 <x-show-layout>
 
-    <!-- alpine.js -->
 
+
+    <!-- -- vue -- -->
+    <div id="vue_app"></div>
+
+
+    <!-- -- alpine.js -- -->
 
     <!-- 診断くん -->
     <div x-data='diagnosis' class='diagnosis-container'>
