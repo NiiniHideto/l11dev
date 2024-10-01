@@ -3,12 +3,12 @@
     <!-- alpine.js -->
 
 
-    <!-- 診断 -->
+    <!-- 診断くん -->
     <div x-data='diagnosis' class='diagnosis-container'>
         <div class='diagnosis-start' x-cloak x-show="step === 'start'" 
             x-transition:enter='transitionEnter' x-transition:enter-start='enterStart' x-transition:enter-end='enterEnd' 
             x-transition:leave='transitionLeave' x-transition:leave-start='leaveStart' x-transition:leave-end='leaveEnd'>
-            <h1 class='start-title'>診断</h1>
+            <h1 class='start-title'>診断くん</h1>
             <button type='button' class='start-btn' @click="handleStep('q1')">
                 START
             </button>

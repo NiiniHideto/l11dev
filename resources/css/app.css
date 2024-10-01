@@ -8,7 +8,7 @@
 
 [x-cloak] { display: none !important; }
 
-/* 診断 */
+/* 診断くん */
 .transitionEnter {
     transition: opacity 0.5s ease 0.5s, translate 0.5s ease 0.5s;
 }
@@ -148,7 +148,7 @@
 
                 &:hover {
                     color: var(--green);
-                    background-color: #000;
+                    background-color: #ffff80;
                     border: 2px solid #000;
         
                     &::after {
@@ -218,8 +218,8 @@
             margin-top: 20px;
 
             img {
-            max-width: 100%;
-            height: auto;
+                max-width: 100%;
+                height: auto;
             }
         }
 
