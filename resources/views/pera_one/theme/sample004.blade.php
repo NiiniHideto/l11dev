@@ -1,8 +1,6 @@
 <x-show-layout>
 
-
-
-    <!-- -- vue -- -->
+    <!-- -- vue.js -- -->
     <div id="vue_app"></div>
 
 
