@@ -136,3 +136,4 @@ const vue_app = createApp(App);
 
 vue_app.use(router);
 vue_app.mount("#vue_app");
+

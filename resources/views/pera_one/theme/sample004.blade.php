@@ -1,11 +1,11 @@
 <x-show-layout>
 
     <!-- -- vue.js -- -->
+    <!-- app.js で起動している -->
     <div id="vue_app"></div>
 
 
     <!-- -- alpine.js -- -->
-
     <!-- 診断くん -->
     <div x-data='diagnosis' class='diagnosis-container'>
         <div class='diagnosis-start' x-cloak x-show="step === 'start'" 
@@ -19,13 +19,13 @@
         <div class='diagnosis-question' x-cloak x-show="step === 'q1'" 
             x-transition:enter='transitionEnter' x-transition:enter-start='enterStart' x-transition:enter-end='enterEnd' 
             x-transition:leave='transitionLeave' x-transition:leave-start='leaveStart' x-transition:leave-end='leaveEnd'>
-            <h2 class='question-title'>パートナーにするなら？</h2>
+            <h2 class='question-title'>どちらかというと？</h2>
             <div class='question-answer'>
             <button type='button' @click="answerQuestion('A')">
-                <span>年上派</span>
+                <span>犬派</span>
             </button>
             <button type='button' @click="answerQuestion('B')">
-                <span>年下派</span>
+                <span>猫派</span>
             </button>
             </div>
             <button class='question-back' type='button' @click='previousStep()'>
