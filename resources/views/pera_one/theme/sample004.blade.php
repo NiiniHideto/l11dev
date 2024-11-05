@@ -4,6 +4,10 @@
     <!-- app.js で起動している -->
     <div id="vue_app"></div>
 
+    @php
+        // laravel debugbar の Messages に出力
+        \Debugbar::info("Debugbar::info test");
+    @endphp
 
     <!-- -- alpine.js -- -->
     <!-- 診断くん -->
