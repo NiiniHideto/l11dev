@@ -138,6 +138,19 @@ class PeraOneController extends Controller
     }
 
     /**
+     * vue test
+     */
+    public function vue()
+    {
+        $user_id = Auth::id();
+        $pera_one = PeraOne::where('user_id', $user_id)->orderBy('id','desc')->first();
+
+        return view('pera_one.vue', compact('pera_one'));
+    }
+
+
+
+    /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)

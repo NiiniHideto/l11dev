@@ -26,6 +26,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/peraone', PeraOneController::class)->except(['show','edit']);
     Route::post('/peraone/save', [PeraOneController::class, 'save'])->name('peraone.save');
     Route::get('/peraone/edit', [PeraOneController::class, 'edit'])->name('peraone.edit');
+
+    Route::get('/peraone/vue', [PeraOneController::class, 'vue'])->name('peraone.vue');
 });
 
 require __DIR__.'/auth.php';
