@@ -6,25 +6,27 @@
     import { useMouse } from './components/mouse.js';
     import { useFetch } from './components/fetch.js';
 
-    const message = ref('message!');
+    import Speech from './components/Speech.vue'
 
-    const count = ref(0);
-    const increment = () => {
-        count.value++;
-    };
-    const decrement = () => {
-        count.value--;
-    };
+    const message = ref('↓ vue router-view での画面切替 バックエンドの処理は無いよ');
 
-    const reset = () => {
-        count.value = 0;
-    };
+    // const count = ref(0);
+    // const increment = () => {
+    //     count.value++;
+    // };
+    // const decrement = () => {
+    //     count.value--;
+    // };
+    // 
+    // const reset = () => {
+    //     count.value = 0;
+    // };
+    //
+    // onMounted(() => {
+    //     console.log(`The initial count is ${count.value}.`);
+    // });
 
-    onMounted(() => {
-        console.log(`The initial count is ${count.value}.`);
-    });
-
-    const { x, y } = useMouse();
+    // const { x, y } = useMouse();
 
     const fetchUrl = ref('https://httpbin.org/get');
     const { data, error } = useFetch(fetchUrl.value);
@@ -51,28 +53,32 @@
 
 <template>
     <div>
-        <p>useFetch data: {{ data }}</p><br>
-        <p>useFetch error: {{ error }}</p>
+        <Speech />
+        <br>
+        <!-- <p>Fetch data: {{ data }}</p><br>
+        <p>Fetch error: {{ error }}</p> -->
         
         <br>
+        <br>
+        <br>
         {{ fetchUrl }}<br>
-        <button @click="fetchUrl = 'https://httpbin.org/get'">
+        <button @click="fetchUrl = 'https://httpbin.org/get'; doFetch(fetchUrl)">
             get
         </button>
-        <button @click="fetchUrl = 'https://httpbin.org/post'">
+        <button @click="fetchUrl = 'https://httpbin.org/post'; doFetch(fetchUrl)">
             post
         </button>
-        <button @click="doFetch(fetchUrl)">
+        <!-- <button @click="doFetch(fetchUrl)">
             doFetch
-        </button>
+        </button> -->
     </div>
 
-    <div>
+    <!-- <div>
         <p>Mouse position: {{ x }}, {{ y }}</p>
         <br>
-    </div>
+    </div> -->
 
-    <div class="flex justify-around">
+    <!-- <div class="flex justify-around">
         <button @click="reset">
             Reset
         </button>
@@ -83,10 +89,13 @@
         <button @click="increment">
             Increment
         </button>
-    </div>
+    </div> -->
 
+    <br>
+    <br>
     <h1>{{ message }}</h1>
     <Header />
+    <!-- vue-router router.js で定義 -->
     <router-view></router-view>
 </template>
 

@@ -138,7 +138,7 @@ class PeraOneController extends Controller
     }
 
     /**
-     * vue test
+     * vue test ユーザー認証は関係ないけど、とりあえず残しておく
      */
     public function vue()
     {

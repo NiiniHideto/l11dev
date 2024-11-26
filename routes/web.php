@@ -9,6 +9,10 @@ Route::get('/', function () {
     return view('index');
 });
 
+Route::get('/vuetest', function () {
+    return view('vuetest');
+});
+
 // 認証していなくても見られるように
 Route::get('/peraone/show/{user_id}', [PeraOneController::class, 'show'])->name('peraone.show');
 
@@ -26,7 +30,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('/peraone', PeraOneController::class)->except(['show','edit']);
     Route::post('/peraone/save', [PeraOneController::class, 'save'])->name('peraone.save');
     Route::get('/peraone/edit', [PeraOneController::class, 'edit'])->name('peraone.edit');
-
     Route::get('/peraone/vue', [PeraOneController::class, 'vue'])->name('peraone.vue');
 });
 
